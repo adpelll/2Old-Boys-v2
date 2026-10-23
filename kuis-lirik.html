@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tebak Lirik 2Old Boys</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Bricolage+Grotesque:opsz,wght@12..96,400..800&display=swap">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="kuis.css">
+<script src="js/tema.js"></script>
+</head>
+<body class="halaman-kuis">
+<header class="kepala">
+  <a class="balik" href="index.html">&larr; Kembali ke album</a>
+  <h1>Tebak Lirik</h1>
+  <p>Sepuluh potongan lirik dari album kami. Tebak dari lagu yang mana.</p>
+</header>
+
+<main id="kuis" aria-live="polite">
+  <section id="mulai" class="kartu">
+    <div class="no" aria-hidden="true">?</div>
+    <h2>Siap menebak?</h2>
+    <p>Kamu akan melihat satu potongan lirik, lalu pilih judul lagunya. Pertanyaan diambil acak dari 20 lagu di album, jadi setiap main berbeda.</p>
+    <div class="aksi">
+      <button class="tombol" id="btn-mulai" type="button">Mulai</button>
+      <a class="tombol kedua" href="kuis.html">Kuis biasa</a>
+      <a class="tombol kedua" href="tebak-intro.html">Tebak intro</a>
+    </div>
+  </section>
+</main>
+
+<script src="js/data.js" defer></script>
+<script src="js/kartu-stiker.js"></script>
+<script src="js/kartu.js"></script>
+<script>window.KARTU&&window.KARTU.pasangAwal("lirik")</script>
+<script src="js/papan-config.js"></script>
+<script src="js/saring.js"></script>
+<script src="js/papan.js" defer></script>
+<script src="js/pemain.js" defer></script>
+<script src="js/kuis-lirik.js" defer></script>
+<script src="js/latar.js" defer></script>
+</body>
+</html>

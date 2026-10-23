@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kuis 2Old Boys</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Bricolage+Grotesque:opsz,wght@12..96,400..800&display=swap">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="kuis.css">
+<script src="js/tema.js"></script>
+</head>
+<body class="halaman-kuis">
+<header class="kepala">
+  <a class="balik" href="index.html">&larr; Kembali ke album</a>
+  <h1>Kuis 2Old Boys</h1>
+  <p>Sepuluh pertanyaan acak, kebanyakan tentang cerita di balik lagu-lagu album kami. Seberapa kenal kamu?</p>
+</header>
+
+<main id="kuis" aria-live="polite">
+  <section id="mulai" class="kartu">
+    <div class="no" aria-hidden="true">?</div>
+    <h2>Siap bermain?</h2>
+    <p>Setiap main, 10 pertanyaan diambil acak dari 24 soal: 8 tentang cerita lagu dan 2 tebak artis. Setelah menjawab, kamu akan melihat jawaban yang benar beserta ceritanya.</p>
+    <div class="aksi">
+      <button class="tombol" id="btn-mulai" type="button">Mulai kuis</button>
+      <a class="tombol kedua" href="kuis-lirik.html">Tebak lirik</a>
+      <a class="tombol kedua" href="tebak-intro.html">Tebak intro</a>
+    </div>
+  </section>
+</main>
+
+<script src="js/kartu-stiker.js"></script>
+<script src="js/kartu.js"></script>
+<script>window.KARTU&&window.KARTU.pasangAwal("kuis")</script>
+<script src="js/papan-config.js"></script>
+<script src="js/saring.js"></script>
+<script src="js/papan.js" defer></script>
+<script src="js/pemain.js" defer></script>
+<script src="js/kuis.js" defer></script>
+<script src="js/latar.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "papan": {
+      ".read": true,
+      "$tim": {
+        ".write": "($tim === 'kepin' || $tim === 'adpel') && newData.isNumber() && newData.val() > (data.exists() ? data.val() : 0) && newData.val() <= (data.exists() ? data.val() : 0) + 10",
+        ".validate": "newData.isNumber()"
+      }
+    },
+    "tamu": {
+      ".read": true,
+      "$id": {
+        ".write": "!data.exists() && newData.exists()",
+        ".validate": "newData.hasChildren(['nama','pesan','waktu'])",
+        "nama": {
+          ".validate": "newData.isString() && newData.val().length >= 1 && newData.val().length <= 20"
+        },
+        "pesan": {
+          ".validate": "newData.isString() && newData.val().length >= 1 && newData.val().length <= 140"
+        },
+        "waktu": {
+          ".validate": "newData.val() === now"
+        },
+        "$lain": {
+          ".validate": false
+        },
+        "lagu": {
+          ".validate": "newData.isNumber() && newData.val() % 1 === 0 && newData.val() >= 1 && newData.val() <= 20"
+        },
+        "emot": {
+          ".validate": "newData.isString() && (newData.val() === '❤️' || newData.val() === '😂' || newData.val() === '🥹' || newData.val() === '🔥' || newData.val() === '🎶' || newData.val() === '👍')"
+        },
+        "tokoh": {
+          ".validate": "newData.isString() && (newData.val() === 'kepin' || newData.val() === 'adpel')"
+        }
+      }
+    },
+    "pemain": {
+      ".read": true,
+      "$tim": {
+        ".indexOn": [
+          "poin"
+        ],
+        "$id": {
+          ".write": "($tim === 'kepin' || $tim === 'adpel') && $id.matches(/^[a-z0-9]{10,24}$/) && newData.exists() && (data.exists() ? (newData.child('nama').val() === data.child('nama').val() && newData.child('poin').val() > data.child('poin').val() && newData.child('poin').val() <= data.child('poin').val() + 10) : newData.child('poin').val() <= 10)",
+          ".validate": "newData.hasChildren(['nama','poin'])",
+          "nama": {
+            ".validate": "newData.isString() && newData.val().length >= 1 && newData.val().length <= 20"
+          },
+          "poin": {
+            ".validate": "newData.isNumber() && newData.val() % 1 === 0 && newData.val() >= 1"
+          },
+          "$lain": {
+            ".validate": false
+          }
+        }
+      }
+    }
+  }
+}

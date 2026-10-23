@@ -1,0 +1,523 @@
+/* 2Old Boys: buku tempel stiker di atas kain flanel.
+   Warna dan garis tebal diambil dari ilustrasi duo-santai.png */
+:root{
+  --tinta:#2b1c15;
+  --kertas:#fff7e6;
+  --kunyit:#e3a63c;
+  --kuning:#f4c64f;
+  --aksen:#3ab5a6;
+  --jingga:#f28c4b;
+  --sage:#9bd0ae;
+  --langit:#9cc7e6;
+  --lila:#c4b0ee;
+  --batik:#1d5f69;
+  --teks:#2b1c15;
+  --krem:#fff7e6;
+  --putih:#fff;
+  --pita:rgba(120,66,20,.28);
+  --jahit:rgba(43,28,21,.2);
+  --arsir:rgba(43,28,21,.14);
+  --luar:#2b1c15;
+  --disp:"Bagel Fat One","Arial Rounded MT Bold",system-ui,sans-serif;
+  --body:"Bricolage Grotesque",system-ui,sans-serif;
+  --garis:3px solid var(--tinta);
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+/* Malam hari: flanel cokelat tua, kartu tetap cerah supaya terbaca */
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --tinta:#0e0806;--luar:#f6e9d2;
+    --kunyit:#2e2119;--pita:rgba(0,0,0,.24);--jahit:rgba(255,230,190,.07);
+    --batik:#7fd6dc;color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --tinta:#0e0806;--luar:#f6e9d2;
+  --kunyit:#2e2119;--pita:rgba(0,0,0,.24);--jahit:rgba(255,230,190,.07);
+  --batik:#7fd6dc;color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:1rem;scroll-behavior:smooth}
+
+/* Kain flanel: dua pita lebar yang bersilang, ditambah garis jahitan tipis */
+body{
+  margin:0;
+  color:var(--teks);
+  font:400 1.06rem/1.62 var(--body);
+  padding-bottom:6rem;
+  background-color:var(--kunyit);
+  background-image:
+    repeating-linear-gradient(90deg,var(--pita) 0 40px,transparent 40px 104px),
+    repeating-linear-gradient(0deg,var(--pita) 0 40px,transparent 40px 104px),
+    repeating-linear-gradient(90deg,var(--jahit) 0 2px,transparent 2px 104px),
+    repeating-linear-gradient(0deg,var(--jahit) 0 2px,transparent 2px 104px);
+  background-position:0 0,0 0,19px 0,0 19px;
+}
+
+/* Teks yang berdiri langsung di atas kain flanel */
+.petunjuk-tim{color:var(--luar)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--batik);outline-offset:3px;box-shadow:0 0 0 7px var(--kertas)}
+
+/* ---------- Hero ---------- */
+.hero{text-align:center;padding:2.2rem 1.25rem 1rem;overflow:hidden}
+.hero h1,.kepala h1{
+  font:400 clamp(3.4rem,14.5vw,7.4rem)/.95 var(--disp);
+  margin:0;
+  color:var(--krem);
+  -webkit-text-stroke:.09em var(--tinta);
+  paint-order:stroke fill;
+  text-shadow:.045em .05em 0 var(--tinta);
+  transform:rotate(-2.5deg);
+  letter-spacing:.005em;
+}
+
+/* Dua kepingan gambar yang bertemu di kepalan tangan */
+.panggung{position:relative;width:min(84vw,400px);margin:.2rem auto 2.7rem}
+.duo{
+  position:relative;
+  width:100%;
+  margin:0;
+  display:grid;
+  filter:
+    drop-shadow(4px 0 0 var(--kertas)) drop-shadow(-4px 0 0 var(--kertas))
+    drop-shadow(0 4px 0 var(--kertas)) drop-shadow(0 -4px 0 var(--kertas))
+    drop-shadow(0 9px 0 rgba(43,28,21,.3));
+  animation:tos .35s ease-out 1s both;
+}
+.duo img{grid-area:1/1;width:100%;height:auto;display:block}
+.duo .kiri{clip-path:inset(0 47% 0 0);animation:kiri .9s cubic-bezier(.3,1.5,.5,1) .15s both}
+.duo .kanan{clip-path:inset(0 0 0 53%);animation:kanan .9s cubic-bezier(.3,1.5,.5,1) .15s both}
+@keyframes kiri{from{transform:translateX(-26%) rotate(-7deg)}to{transform:none}}
+@keyframes kanan{from{transform:translateX(26%) rotate(7deg)}to{transform:none}}
+/* Nama karakter menempel di bawah masing-masing, muncul sesudah mereka tos */
+.nama{
+  position:absolute;bottom:-1.25rem;margin:0;
+  padding:.05rem 1rem .2rem;
+  font:400 1.45rem/1.2 var(--disp);color:var(--tinta);
+  border:var(--garis);border-radius:12px;box-shadow:3px 3px 0 var(--tinta);
+  animation:tempel .4s cubic-bezier(.3,1.6,.5,1) 1.2s both;
+  cursor:pointer;-webkit-appearance:none;appearance:none;
+  transition:scale .15s,box-shadow .15s,opacity .15s,filter .15s;
+}
+.nama.kepin{left:27%;background:var(--jingga);--r:-4deg;transform:translateX(-50%) rotate(-4deg)}
+.nama.adpel{left:74%;background:var(--langit);--r:3deg;transform:translateX(-50%) rotate(3deg)}
+@keyframes tempel{from{opacity:0;transform:translateX(-50%) rotate(var(--r)) scale(.2)}to{opacity:1;transform:translateX(-50%) rotate(var(--r)) scale(1)}}
+@keyframes tos{0%{transform:scale(1)}45%{transform:scale(1.035) rotate(-.6deg)}100%{transform:scale(1)}}
+
+.label{
+  display:inline-block;
+  max-width:30ch;
+  margin:1.4rem auto 0;
+  padding:.7rem 1.2rem .8rem;
+  background:var(--kertas);
+  border:var(--garis);
+  border-radius:16px 16px 16px 4px;
+  box-shadow:5px 5px 0 var(--tinta);
+  font-weight:600;
+  font-size:1.08rem;
+  line-height:1.45;
+  transform:rotate(1.3deg);
+}
+
+/* ---------- Daftar lagu ---------- */
+main{max-width:660px;margin:0 auto;padding:2.2rem 1.15rem 1rem}
+
+.lagu{
+  --c:var(--aksen);
+  position:relative;
+  background:var(--kertas);
+  border:var(--garis);
+  border-radius:24px 24px 24px 6px;
+  box-shadow:6px 6px 0 var(--tinta);
+  padding:2.3rem 1.4rem 1.5rem;
+  margin:0 0 2.6rem;
+  scroll-margin-top:1rem;
+}
+.lagu:nth-child(odd){transform:rotate(-.7deg)}
+.lagu:nth-child(even){transform:rotate(.6deg)}
+@media(min-width:760px){
+  .lagu:nth-child(odd){margin-right:3.5rem}
+  .lagu:nth-child(even){margin-left:3.5rem}
+}
+.lagu:nth-child(5n+1){--c:var(--aksen)}
+.lagu:nth-child(5n+2){--c:var(--kuning)}
+.lagu:nth-child(5n+3){--c:var(--sage)}
+.lagu:nth-child(5n+4){--c:var(--langit)}
+.lagu:nth-child(5n+5){--c:var(--lila)}
+
+/* Selotip di sudut kanan atas */
+.lagu::before{
+  content:"";
+  position:absolute;
+  top:-15px;right:1.6rem;
+  width:78px;height:26px;
+  background:var(--c);
+  border:2px solid var(--tinta);
+  transform:rotate(4deg);
+  opacity:.95;
+}
+
+/* Nomor lagu menempel di sudut kiri atas seperti stiker */
+.no{
+  width:3.3rem;height:3.3rem;
+  border-radius:50%;
+  display:grid;place-items:center;
+  font:400 1.5rem/1 var(--disp);
+  color:var(--tinta);
+  background:var(--c,var(--aksen));
+  border:var(--garis);
+  box-shadow:3px 3px 0 var(--tinta);
+  margin-bottom:.9rem;
+}
+.lagu .no{position:absolute;left:-.9rem;top:-1.3rem;margin:0;transform:rotate(-9deg)}
+
+.lagu h2{font:400 1.75rem/1.12 var(--disp);margin:.7rem 0 .55rem;letter-spacing:.005em}
+.art{
+  display:inline-block;
+  margin:0 .5rem 1rem 0;
+  padding:.05rem .8rem .12rem;
+  border:2px solid var(--tinta);
+  border-radius:99px;
+  font:600 .95rem/1.5 var(--body);
+}
+.lagu p:not(.art):not(.fav){margin:0 0 1.1rem;max-width:62ch}
+
+/* Potongan lirik dengan stabilo */
+.fav{margin:0 0 1.3rem;padding-left:.9rem;border-left:5px solid var(--c);font:italic 500 1.08rem/1.75 var(--body)}
+.fav span{background:linear-gradient(transparent 52%,var(--kuning) 52% 94%,transparent 94%);-webkit-box-decoration-break:clone;box-decoration-break:clone;padding:0 .15em}
+
+.cari,.besar,.tombol{
+  display:inline-block;
+  color:var(--tinta);
+  background:var(--aksen);
+  border:var(--garis);
+  border-radius:999px;
+  box-shadow:4px 4px 0 var(--tinta);
+  font:700 1rem/1.2 var(--body);
+  text-decoration:none;
+  padding:.55rem 1.2rem;
+  cursor:pointer;
+  transition:transform .12s,box-shadow .12s;
+}
+.cari{background:var(--c)}
+.cari:hover,.besar:hover,.tombol:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--tinta)}
+.cari:active,.besar:active,.tombol:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--tinta)}
+
+/* ---------- Penutup ---------- */
+.akhir{max-width:660px;margin:0 auto;padding:1rem 1.15rem 1rem}
+.akhir .kotak{
+  background:var(--kertas);
+  border:var(--garis);
+  border-radius:24px 6px 24px 24px;
+  box-shadow:6px 6px 0 var(--tinta);
+  padding:1.8rem 1.4rem 1.7rem;
+  text-align:center;
+  transform:rotate(.5deg);
+}
+.akhir h2{font:400 clamp(1.9rem,8vw,2.7rem)/1.08 var(--disp);margin:0 0 .6rem}
+.akhir p{max-width:36ch;margin:0 auto 1.3rem}
+.besar{font-size:1.1rem;padding:.75rem 1.6rem}
+.akhir .pilihan-main{display:flex;flex-wrap:wrap;justify-content:center;gap:1rem;margin-top:1.5rem}
+.besar.kuning{background:var(--kuning)}
+.besar.lila{background:var(--lila)}
+
+/* ---------- Pemutar bawah ---------- */
+.player{
+  position:fixed;left:0;right:0;bottom:0;z-index:5;
+  display:flex;align-items:center;gap:.75rem;
+  background:var(--tinta);color:var(--krem);
+  padding:.65rem 1rem calc(.65rem + env(safe-area-inset-bottom,0px));
+  border-top:3px solid var(--kertas);
+}
+/* Garis kemajuan tipis di tepi atas bar. Bisa digeser dengan jari atau diketuk untuk maju dan mundur */
+.seek{position:absolute;left:0;right:0;top:-3px;height:4px}
+.seek input{
+  position:absolute;left:0;right:0;top:-12px;width:100%;height:28px;margin:0;padding:0;
+  background:transparent;cursor:pointer;-webkit-appearance:none;appearance:none;--isi:0%;
+}
+.seek input:disabled{cursor:default}
+.seek input::-webkit-slider-runnable-track{height:4px;border-radius:0;background:linear-gradient(90deg,var(--aksen) var(--isi),rgba(255,247,230,.22) var(--isi))}
+.seek input::-moz-range-track{height:4px;background:rgba(255,247,230,.22)}
+.seek input::-moz-range-progress{height:4px;background:var(--aksen)}
+.seek input::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:14px;height:14px;margin-top:-5px;border-radius:50%;background:var(--kuning);border:2px solid var(--kertas);opacity:0;transition:opacity .15s}
+.seek input::-moz-range-thumb{width:10px;height:10px;border-radius:50%;background:var(--kuning);border:2px solid var(--kertas);opacity:0;transition:opacity .15s}
+.seek input:not(:disabled):hover::-webkit-slider-thumb,.seek input:focus-visible::-webkit-slider-thumb,.seek input:active::-webkit-slider-thumb{opacity:1}
+.seek input:not(:disabled):hover::-moz-range-thumb,.seek input:focus-visible::-moz-range-thumb,.seek input:active::-moz-range-thumb{opacity:1}
+.seek input:focus-visible{outline:none;box-shadow:none}
+.plat{
+  flex:none;width:3rem;height:3rem;border-radius:50%;
+  border:2px solid var(--kertas);
+  /* titik putih dan kilap di satu sisi supaya putarannya terlihat */
+  background:
+    radial-gradient(circle at 50% 17%,var(--kertas) 0 5%,transparent 6%),
+    radial-gradient(circle,var(--aksen) 0 19%,var(--tinta) 19% 25%,transparent 25%),
+    conic-gradient(from 20deg,transparent 0 18%,rgba(255,247,230,.5) 24%,transparent 30% 68%,rgba(255,247,230,.5) 74%,transparent 80%),
+    repeating-radial-gradient(circle,#120b08 0 2px,#4a3a30 2px 4px);
+  animation:putar 1.8s linear infinite;animation-play-state:paused;
+}
+body.memutar .plat{animation-play-state:running}
+@keyframes putar{to{transform:rotate(360deg)}}
+.judul-bar{flex:1;min-width:0;display:grid;line-height:1.25}
+#now{font-weight:700;font-size:.98rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#artis-now{font-size:.82rem;opacity:.8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kontrol{flex:none;display:flex;align-items:center;gap:.35rem}
+.kontrol button{
+  width:2.4rem;height:2.4rem;padding:0;display:grid;place-items:center;
+  border-radius:50%;border:2px solid var(--kertas);background:transparent;color:var(--kertas);cursor:pointer;
+}
+.kontrol button svg{width:52%;height:52%;fill:currentColor}
+.kontrol #pp{width:3rem;height:3rem;background:var(--kuning);border-color:var(--kuning);color:var(--tinta)}
+.kontrol button:active{transform:scale(.93)}
+
+/* ---------- Pemutar di kartu lagu ---------- */
+.pemutar{
+  margin:0 0 1.3rem;padding:.85rem .9rem .8rem;
+  background:color-mix(in srgb,var(--c) 38%,var(--kertas));
+  border:2px dashed var(--tinta);border-radius:16px;
+}
+.p-atas{display:flex;align-items:center;gap:.8rem}
+.p-tombol{
+  flex:none;width:3.3rem;height:3.3rem;padding:0;display:grid;place-items:center;
+  border-radius:50%;background:var(--aksen);color:var(--tinta);
+  border:var(--garis);box-shadow:3px 3px 0 var(--tinta);cursor:pointer;
+  transition:transform .12s,box-shadow .12s;
+}
+.p-tombol svg{width:50%;height:50%;fill:currentColor}
+.p-tombol:hover:not(:disabled){transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--tinta)}
+.p-tombol:active:not(:disabled){transform:translate(2px,2px);box-shadow:1px 1px 0 var(--tinta)}
+.p-tombol:disabled{opacity:.45;cursor:not-allowed;box-shadow:none}
+.pemutar.jalan .p-tombol{background:var(--kuning)}
+.p-info{flex:1;min-width:0;display:grid;gap:.1rem}
+.p-info strong{font:400 1.08rem/1.2 var(--disp);overflow-wrap:anywhere}
+.p-info span{font-size:.9rem;opacity:.8}
+
+/* Equalizer: bergerak hanya saat lagu diputar */
+.eq{flex:none;display:flex;align-items:flex-end;gap:3px;height:1.5rem}
+.eq i{display:block;width:5px;height:30%;border-radius:2px;background:var(--tinta)}
+.eq i:nth-child(2){height:65%}
+.eq i:nth-child(3){height:45%}
+.eq i:nth-child(4){height:80%}
+.pemutar.jalan .eq i{animation:eq .8s ease-in-out infinite}
+.pemutar.jalan .eq i:nth-child(2){animation-duration:.6s;animation-delay:-.2s}
+.pemutar.jalan .eq i:nth-child(3){animation-duration:.95s;animation-delay:-.45s}
+.pemutar.jalan .eq i:nth-child(4){animation-duration:.7s;animation-delay:-.1s}
+@keyframes eq{0%,100%{height:20%}50%{height:100%}}
+
+.p-bawah{display:flex;align-items:center;gap:.7rem;margin-top:.75rem}
+.p-bawah input{flex:1;min-width:0;height:1.3rem;margin:0;accent-color:var(--teks);cursor:pointer}
+.waktu{flex:none;min-width:6.4ch;text-align:right;font-variant-numeric:tabular-nums;font-size:.85rem;font-weight:600}
+.pemutar.kosong .p-bawah,.pemutar.kosong .eq{display:none}
+.belum{margin:.65rem 0 0;font-size:.92rem;opacity:.8}
+
+.galat{background:var(--kertas);color:var(--teks);padding:1rem;border:var(--garis);border-radius:16px}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .duo,.duo .kiri,.duo .kanan,.eq i,.nama{animation:none!important}
+  .plat{animation-duration:6s}
+  .cari,.besar,.tombol{transition:none}
+}
+
+
+/* Stiker "Pilihan Kepin / Adpel / berdua" */
+.lagu p.pilih{
+  display:inline-flex;align-items:center;gap:.45rem;
+  margin:0 0 1rem;padding:.05rem .85rem .05rem .1rem;
+  border:2px solid var(--tinta);border-radius:99px;
+  font:600 .95rem/1.5 var(--body);vertical-align:top;
+  background:var(--jingga);
+}
+.lagu p.pilih.adpel{background:var(--langit)}
+.lagu p.pilih.berdua{background:var(--kuning)}
+.wajah{display:inline-flex;flex:none}
+.wajah img{width:1.75rem;height:1.75rem;border-radius:50%;border:2px solid var(--tinta);background:var(--kertas);object-fit:cover;display:block}
+.wajah.dua img+img{margin-left:-.6rem}
+
+/* Penyaring lagu berdasarkan pemilih */
+.saring{max-width:660px;margin:1.2rem auto 0;padding:0 1.15rem;display:flex;flex-wrap:wrap;align-items:center;gap:.7rem}
+.saring[hidden]{display:none}
+.chip{
+  display:inline-flex;align-items:center;gap:.45rem;
+  padding:.3rem .95rem .3rem .35rem;
+  background:var(--kertas);color:var(--teks);
+  border:var(--garis);border-radius:999px;box-shadow:3px 3px 0 var(--tinta);
+  font:700 .95rem/1.2 var(--body);cursor:pointer;
+  transition:transform .12s,box-shadow .12s;
+}
+.chip:not(:has(.wajah)){padding-left:.95rem}
+.chip .wajah img{width:1.5rem;height:1.5rem}
+.chip[aria-pressed="true"]{background:var(--kuning);transform:translate(2px,2px);box-shadow:1px 1px 0 var(--tinta)}
+.chip:hover:not([aria-pressed="true"]){transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--tinta)}
+.saring-info{flex-basis:100%;margin:0;font-weight:600;min-height:1.4rem;background:var(--kertas);display:none}
+.saring-info:not(:empty){display:inline-block;flex-basis:auto;padding:.15rem .8rem;border:2px dashed var(--tinta);border-radius:99px}
+@media(prefers-reduced-motion:reduce){.chip{transition:none}}
+
+/* ---------- Papan skor Kepin lawan Adpel ---------- */
+.papan{max-width:660px;margin:2.6rem auto 0;padding:0 1.15rem}
+.papan-kotak{
+  background:var(--kertas);border:var(--garis);
+  border-radius:24px 6px 24px 24px;box-shadow:6px 6px 0 var(--tinta);
+  padding:1.3rem 1.2rem 1.2rem;
+}
+.papan-kotak h2{font:400 clamp(1.6rem,7vw,2.2rem)/1.1 var(--disp);margin:0 0 1rem;text-align:center}
+.tarik{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:.8rem}
+.sisi{display:grid;justify-items:center;gap:.1rem;min-width:4.2rem;position:relative}
+.sisi img{width:3.3rem;height:3.3rem;border-radius:50%;border:var(--garis);object-fit:cover;display:block}
+.sisi.kepin img{background:var(--jingga)}
+.sisi.adpel img{background:var(--langit)}
+.sisi b{font:400 1.9rem/1.1 var(--disp);font-variant-numeric:tabular-nums}
+.sisi small{font-weight:700;font-size:.8rem}
+.unggul-tag{margin-top:.15rem;padding:0 .55rem;background:var(--kuning);border:2px solid var(--tinta);border-radius:99px;font-weight:800;font-size:.72rem;line-height:1.5}
+.tali{position:relative;height:1.7rem;border:var(--garis);border-radius:99px;background:var(--langit);--p:50%}
+.jalur{position:absolute;inset:0;overflow:hidden;border-radius:99px;
+  background:repeating-linear-gradient(90deg,var(--arsir) 0 3px,transparent 3px 8px)}
+.jalur .bagian{position:absolute;left:0;top:0;bottom:0;width:var(--p);background:var(--jingga);border-right:3px solid var(--tinta);transition:width .9s cubic-bezier(.3,1.3,.5,1)}
+.simpul{position:absolute;top:50%;left:var(--p);width:1.05rem;height:2.4rem;transform:translate(-50%,-50%) rotate(4deg);
+  background:var(--kuning);border:var(--garis);border-radius:6px;box-shadow:2px 2px 0 var(--tinta);transition:left .9s cubic-bezier(.3,1.3,.5,1)}
+.kabar{margin:1rem 0 0;text-align:center;font-weight:700;max-width:none}
+.dukung{margin:.2rem 0 0;text-align:center;font-size:.92rem}
+.dukung[hidden]{display:none}
+.papan-aksi{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:.7rem;margin-top:1rem}
+.papan-aksi .chip{text-decoration:none;padding-left:.95rem}
+.tautan-kecil{background:none;border:0;padding:.3rem .2rem;font:600 .88rem var(--body);color:var(--tinta);text-decoration:underline;cursor:pointer}
+.catatan-kecil{margin:.7rem 0 0;text-align:center;font-size:.82rem;opacity:.7}
+.papan-kotak.ringkas{padding:.9rem .9rem .8rem;box-shadow:4px 4px 0 var(--tinta);border-radius:18px;background:color-mix(in srgb,var(--kuning) 25%,var(--kertas))}
+.ringkas .sisi img{width:2.6rem;height:2.6rem}
+.ringkas .sisi b{font-size:1.5rem}
+.ringkas .kabar{margin-top:.7rem;font-size:.95rem}
+.ringkas .dukung{display:none}
+
+/* Catatan tim dan kartu hasil di halaman kuis */
+.tim-catatan{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1.3rem;font-weight:700}
+.tim-catatan a{color:var(--teks)}
+.tim-hasil{margin:0 0 1.2rem}
+.tim-info{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 .8rem;font-weight:800;font-size:1.05rem}
+.tim-hasil>a.tombol{display:inline-block;margin:0 0 1rem}
+@media(prefers-reduced-motion:reduce){.jalur .bagian,.simpul{transition:none}}
+
+/* Stiker nama = tombol pilih tim */
+.nama:hover{scale:1.06}
+.nama:active{scale:.96}
+.nama[aria-pressed="true"]{scale:1.12;box-shadow:4px 4px 0 var(--tinta);z-index:1}
+.nama[aria-pressed="true"]::before{content:"\2713\00a0";font-family:var(--body);font-weight:800}
+.panggung.ada-tim .nama[aria-pressed="false"]{opacity:.7;filter:saturate(.6)}
+.petunjuk-tim{margin:0 auto;max-width:34ch;font-weight:700;font-size:.98rem}
+.petunjuk-tim+.label{margin-top:.8rem}
+@media(prefers-reduced-motion:reduce){.nama{transition:none}}
+
+/* Wajah di papan skor = tombol pilih tim */
+.kepala-tim{position:relative;margin-bottom:.4rem;padding:0;border:0;background:none;border-radius:50%;cursor:pointer;line-height:0;transition:scale .15s}
+.kepala-tim:hover{scale:1.07}
+.kepala-tim:active{scale:.95}
+.kepala-tim[aria-pressed="true"] img{box-shadow:0 0 0 3px var(--kuning),0 0 0 6px var(--tinta)}
+.kepala-tim[aria-pressed="true"]::after{
+  content:"\2713";position:absolute;right:-.35rem;bottom:-.2rem;
+  width:1.4rem;height:1.4rem;display:grid;place-items:center;line-height:1;
+  border-radius:50%;background:var(--kuning);border:2px solid var(--tinta);font:800 .8rem var(--body);color:var(--tinta);
+}
+.sisi:not(.dipilih) .kepala-tim[aria-pressed="false"] img{filter:saturate(.85)}
+@media(prefers-reduced-motion:reduce){.kepala-tim{transition:none}}
+
+/* Kartu lagu: ringkas dulu, kisah dan lirik muncul saat dibuka */
+.lagu{scroll-margin-bottom:5.5rem}
+.buka-kisah{
+  display:flex;align-items:center;justify-content:space-between;gap:.6rem;
+  width:100%;padding:.65rem 1rem;
+  background:var(--kertas);color:var(--tinta);
+  border:var(--garis);border-radius:14px;box-shadow:3px 3px 0 var(--tinta);
+  font:700 1rem/1.3 var(--body);text-align:left;cursor:pointer;
+  transition:transform .12s,box-shadow .12s,background .2s;
+}
+.buka-kisah:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--tinta)}
+.buka-kisah:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--tinta)}
+.lagu.terbuka .buka-kisah{background:var(--c)}
+.panah{flex:none;width:.7rem;height:.7rem;margin-right:.15rem;border-right:3px solid var(--tinta);border-bottom:3px solid var(--tinta);transform:rotate(45deg) translateY(-3px);transition:transform .25s}
+.lagu.terbuka .panah{transform:rotate(-135deg) translateY(-3px)}
+.panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s ease}
+.panel-isi{min-height:0;overflow:hidden;visibility:hidden;transition:visibility 0s .3s}
+.lagu.terbuka .panel{grid-template-rows:1fr}
+.lagu.terbuka .panel-isi{visibility:visible;transition-delay:0s}
+.panel-isi>:first-child{margin-top:1.2rem}
+.panel-isi>.cari{margin-bottom:.1rem}
+@media(prefers-reduced-motion:reduce){.buka-kisah,.panah,.panel,.panel-isi{transition:none}}
+
+/* Pemutar ringkas satu baris: judul dan artis sudah ada di kepala kartu */
+.pemutar{display:grid;grid-template-columns:auto 1fr auto;align-items:center;column-gap:.8rem;row-gap:.5rem;padding:.7rem .85rem}
+.p-atas{display:contents}
+.p-info{display:none}
+.p-tombol{grid-column:1;grid-row:1}
+.p-bawah{grid-column:2;grid-row:1;margin-top:0;min-width:0;gap:.6rem}
+.eq{grid-column:3;grid-row:1}
+.pemutar .belum{grid-column:1/-1;grid-row:2;margin:0}
+.pemutar.kosong .belum{grid-column:2/-1;grid-row:1;font-weight:600}
+.waktu{min-width:5.6ch;font-size:.8rem}
+
+/* Jarak antara tombol "Baca kisahnya" dan isi kisah (selector dibuat cukup kuat agar tidak tertimpa aturan paragraf kartu) */
+.lagu .panel-isi>p:first-child:not(.art):not(.fav){margin-top:1.5rem}
+
+/* Stiker penutup di bagian akhir album */
+.akhir .stiker-akhir{display:block;width:min(40%,150px);height:auto;margin:-.2rem auto .6rem;transform:rotate(3deg);filter:drop-shadow(0 4px 0 rgba(43,28,21,.25))}
+
+/* ---------- Favorit (hati) ---------- */
+.lagu h2{padding-right:2.9rem}
+.hati{
+  position:absolute;top:.85rem;right:.9rem;z-index:2;
+  width:2.6rem;height:2.6rem;padding:0;display:grid;place-items:center;cursor:pointer;
+  background:var(--kertas);color:#2b1c15;
+  border:var(--garis);border-radius:50%;box-shadow:3px 3px 0 var(--tinta);
+  transition:transform .12s,box-shadow .12s,background .12s;
+}
+.hati svg,.hati-chip svg{width:1.3rem;height:1.3rem;display:block;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linejoin:round}
+.hati:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--tinta)}
+.hati[aria-pressed="true"]{background:#f0577a;transform:translate(2px,2px);box-shadow:1px 1px 0 var(--tinta);animation:denyut .32s ease-out}
+.hati[aria-pressed="true"] svg{fill:#fff7e6;stroke:#2b1c15}
+@keyframes denyut{0%{scale:.8}60%{scale:1.18}100%{scale:1}}
+.hati-chip{display:inline-flex;color:#c63a5f}
+.hati-chip svg{width:1.15rem;height:1.15rem;fill:currentColor;stroke:#2b1c15;stroke-width:2.2}
+.chip-fav{padding-left:.8rem}
+@media(prefers-reduced-motion:reduce){.hati{transition:none;animation:none!important}}
+
+/* Tiga pesan terbaru buku tamu di halaman album */
+.tamu-terbaru{list-style:none;margin:0 auto 1.3rem;padding:0;display:grid;gap:.75rem;max-width:420px;text-align:left}
+.tamu-terbaru[hidden]{display:none}
+.tamu-terbaru li{display:flex;gap:.7rem;align-items:center;background:var(--putih);border:var(--garis);border-top:9px solid var(--c,var(--sage));border-radius:14px 14px 14px 4px;box-shadow:3px 3px 0 var(--tinta);padding:.55rem .8rem .65rem}
+.tamu-terbaru li:nth-child(3n+1){--c:var(--sage);transform:rotate(-.5deg)}
+.tamu-terbaru li:nth-child(3n+2){--c:var(--langit);transform:rotate(.4deg)}
+.tamu-terbaru li:nth-child(3n){--c:var(--lila);transform:rotate(-.3deg)}
+.tamu-terbaru img{flex:none;width:2.9rem;height:2.9rem;object-fit:contain}
+.tamu-terbaru b{display:block;font:400 1.02rem/1.2 var(--disp);overflow-wrap:anywhere}
+.tamu-terbaru .emot-pesan{margin-left:.35rem}
+.akhir .tamu-terbaru p{max-width:none;margin:.1rem 0 0;text-align:left;font-size:.95rem;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+/* Papan pemain: dua daftar nama per tim */
+.pemain-papan{margin-top:1.3rem;background:var(--kertas);border:var(--garis);border-radius:6px 24px 24px 24px;box-shadow:6px 6px 0 var(--tinta);padding:1.1rem 1rem 1rem}
+.pemain-papan h3{font:400 clamp(1.4rem,6vw,1.9rem)/1.1 var(--disp);margin:0 0 .9rem;text-align:center}
+.pemain-papan.ringkas{margin:1rem 0 0;padding:.8rem .7rem .7rem;border-radius:18px;box-shadow:4px 4px 0 var(--tinta)}
+.pemain-dua{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+.pemain-kolom{min-width:0;border:3px solid var(--tinta);border-radius:14px;padding:.55rem .6rem .6rem;background:var(--putih);text-align:left}
+.pemain-kolom.kepin{background:color-mix(in srgb,var(--jingga) 22%,var(--putih))}
+.pemain-kolom.adpel{background:color-mix(in srgb,var(--langit) 35%,var(--putih))}
+.pemain-kolom h4{display:flex;align-items:center;gap:.4rem;margin:0 0 .45rem;font:400 1.05rem/1.1 var(--disp)}
+.pemain-kolom h4 img{width:1.7rem;height:1.7rem;border-radius:50%;border:2px solid var(--tinta);object-fit:cover;flex:none}
+.pemain-kolom ol{list-style:none;margin:0;padding:0;display:grid;gap:.25rem}
+.pemain-kolom li{display:flex;gap:.4rem;align-items:baseline;font-weight:700;font-size:.92rem;line-height:1.25;padding:.15rem .25rem;border-radius:8px}
+.pemain-kolom li.aku{background:var(--kuning)}
+.pemain-kolom .p-no{flex:none;min-width:1.1em;opacity:.65;font-variant-numeric:tabular-nums}
+.pemain-kolom .p-nm{flex:1;min-width:0;overflow-wrap:anywhere}
+.pemain-kolom .p-pt{flex:none;font-variant-numeric:tabular-nums}
+.pemain-kolom li.kosong{display:block;font-weight:500;opacity:.65}
+@media (max-width:340px){.pemain-dua{grid-template-columns:1fr}}
+.pemain-info{margin-top:.9rem}
+/* Form nama dan tim di layar awal kuis */
+.pemain-form{margin:0 0 1.1rem;text-align:left}
+.pemain-form label{display:block;font-weight:800;margin:0 0 .35rem}
+.pemain-form input{display:block;width:100%;box-sizing:border-box;font:600 1rem/1.4 var(--body);color:var(--teks);background:var(--putih);border:var(--garis);border-radius:14px;padding:.65rem .85rem;margin:0 0 .8rem;box-shadow:3px 3px 0 var(--tinta)}
+.pemain-form input:focus-visible,.pemain-tim button:focus-visible{outline:3px solid var(--aksen);outline-offset:2px}
+.pemain-tim{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+.pemain-tim button{display:flex;align-items:center;justify-content:flex-start;text-align:left;gap:.5rem;padding:.35rem .7rem .35rem .4rem;cursor:pointer;font:700 1rem var(--body);color:var(--teks);background:var(--putih);border:var(--garis);border-radius:16px;box-shadow:3px 3px 0 var(--tinta);transition:transform .12s,box-shadow .12s,background .12s}
+.pemain-tim button img{width:2.6rem;height:2.6rem;border-radius:50%;border:2px solid var(--tinta);object-fit:cover;flex:none}
+.pemain-tim button[aria-checked="true"]{background:var(--aksen);transform:translate(2px,2px);box-shadow:1px 1px 0 var(--tinta)}
+.pemain-galat{margin:.7rem 0 0;font-weight:800;color:#a3261a}
+@media (prefers-reduced-motion:reduce){.pemain-tim button{transition:none}}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tebak Intro 2Old Boys</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Bricolage+Grotesque:opsz,wght@12..96,400..800&display=swap">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="kuis.css">
+<script src="js/tema.js"></script>
+</head>
+<body class="halaman-kuis">
+<header class="kepala">
+  <a class="balik" href="index.html">&larr; Kembali ke album</a>
+  <h1>Tebak Intro</h1>
+  <p>Dengarkan sepuluh detik pertama lagunya, lalu tebak judulnya.</p>
+</header>
+
+<main id="kuis" aria-live="polite">
+  <section id="mulai" class="kartu">
+    <div class="no" aria-hidden="true">&#9835;</div>
+    <h2>Siap mendengar?</h2>
+    <p>Ketuk tombol putar untuk mendengar intro lagu, lalu pilih judul yang benar. Kamu boleh memutar ulang sebanyak yang kamu mau. Lagu diambil acak dari album, jadi setiap main berbeda.</p>
+    <p>Nyalakan suara perangkatmu dulu ya.</p>
+    <div class="aksi">
+      <button class="tombol" id="btn-mulai" type="button">Mulai</button>
+      <a class="tombol kedua" href="kuis-lirik.html">Tebak lirik</a>
+    </div>
+  </section>
+</main>
+
+<script src="js/data.js" defer></script>
+<script src="js/kartu-stiker.js"></script>
+<script src="js/kartu.js"></script>
+<script>window.KARTU&&window.KARTU.pasangAwal("intro")</script>
+<script src="js/papan-config.js"></script>
+<script src="js/saring.js"></script>
+<script src="js/papan.js" defer></script>
+<script src="js/pemain.js" defer></script>
+<script src="js/tebak-intro.js" defer></script>
+</body>
+</html>

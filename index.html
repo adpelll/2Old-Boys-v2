@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>2Old Boys</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Bricolage+Grotesque:opsz,wght@12..96,400..800&display=swap">
+<link rel="stylesheet" href="style.css">
+<script src="js/tema.js"></script>
+</head>
+<body>
+<header class="hero">
+  <h1>2Old Boys</h1>
+  <div class="panggung">
+    <div class="duo">
+      <img class="kiri" src="duo-santai.png" alt="Kepin dan Adpel saling tos kepalan tangan">
+      <img class="kanan" src="duo-santai.png" alt="" aria-hidden="true">
+    </div>
+    <button type="button" class="nama kepin" id="nama-kepin" aria-pressed="false">Kepin</button>
+    <button type="button" class="nama adpel" id="nama-adpel" aria-pressed="false">Adpel</button>
+  </div>
+  <p class="petunjuk-tim" id="petunjuk-tim" aria-live="polite">Ketuk nama untuk mendukung timmu.</p>
+  <p class="label">Album tentang kami berdua. Dua puluh lagu, dua puluh kisah yang kami simpan.</p>
+</header>
+
+<section class="papan" id="papan" aria-label="Papan skor Kepin lawan Adpel"></section>
+
+<nav class="saring" id="saring" aria-label="Saring lagu berdasarkan pemilih" hidden></nav>
+
+<main id="daftar"></main>
+
+<section class="akhir">
+  <div class="kotak">
+    <img class="stiker-akhir" src="stiker/s14.webp" alt="">
+    <h2>Masih banyak lagu lainnya</h2>
+    <p>Playlist 2Old Boys berisi lagu-lagu favorit dan sebagian cerita kami.</p>
+    <a class="besar" href="https://open.spotify.com/playlist/1H2x7axUqi23OTwMfsfM5Q" target="_blank" rel="noopener">Putar playlist lengkap</a>
+    <div class="pilihan-main">
+      <a class="besar kuning" href="kuis.html">Main kuis 2Old Boys</a>
+      <a class="besar lila" href="kuis-lirik.html">Tebak lirik</a>
+      <a class="besar" href="tebak-intro.html">Tebak intro</a>
+    </div>
+  </div>
+</section>
+
+<section class="akhir" id="buku-tamu">
+  <div class="kotak">
+    <img class="stiker-akhir" src="stiker/s11.webp" alt="">
+    <h2>Tinggalkan jejak</h2>
+    <p>Sudah sampai sini? Tulis satu dua kalimat untuk kami di buku tamu.</p>
+    <ul class="tamu-terbaru" id="tamu-terbaru" aria-label="Pesan terbaru" hidden></ul>
+    <a class="besar kuning" href="tamu.html">Tulis di buku tamu</a>
+  </div>
+</section>
+
+<div class="player" role="region" aria-label="Pemutar lagu">
+  <div class="seek">
+    <input type="range" id="seek" min="0" max="1000" value="0" step="1" aria-label="Geser posisi lagu" disabled>
+  </div>
+  <div class="plat" aria-hidden="true"></div>
+  <div class="judul-bar" aria-live="polite">
+    <span id="now">Gulir untuk mulai</span>
+    <small id="artis-now"></small>
+  </div>
+  <div class="kontrol">
+    <button type="button" id="prev" aria-label="Lagu sebelumnya"></button>
+    <button type="button" id="pp" aria-label="Putar"></button>
+    <button type="button" id="next" aria-label="Lagu berikutnya"></button>
+  </div>
+</div>
+
+<script src="js/data.js" defer></script>
+<script src="js/papan-config.js"></script>
+<script src="js/tamu-terbaru.js"></script>
+<script src="js/papan.js" defer></script>
+<script src="js/pemain.js" defer></script>
+<script src="js/script.js" defer></script>
+<script src="js/atas.js" defer></script>
+</body>
+</html>

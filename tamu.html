@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Buku Tamu 2Old Boys</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Bricolage+Grotesque:opsz,wght@12..96,400..800&display=swap">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="kuis.css">
+<link rel="stylesheet" href="tamu.css">
+<script src="js/tema.js"></script>
+</head>
+<body class="halaman-kuis halaman-tamu">
+<header class="kepala">
+  <a class="balik" href="index.html">&larr; Kembali ke album</a>
+  <h1>Buku Tamu</h1>
+  <p>Mampir? Tinggalkan satu pesan untuk Kepin dan Adpel. Langsung tampil di bawah.</p>
+</header>
+
+<main id="tamu">
+  <section class="kartu" aria-labelledby="judul-form">
+    <h2 id="judul-form">Tulis pesanmu</h2>
+    <form id="form" autocomplete="off" novalidate>
+      <fieldset class="tokoh-set">
+        <legend>Pilih stiker</legend>
+        <div id="tokoh" class="tokoh" role="radiogroup" aria-label="Pilih Kepin atau Adpel">
+          <button type="button" role="radio" aria-checked="false" data-t="kepin"><img src="stiker-tamu/k02.webp" alt="" width="56" height="56"><span>Kepin</span></button>
+          <button type="button" role="radio" aria-checked="false" data-t="adpel"><img src="stiker-tamu/a01.webp" alt="" width="56" height="56"><span>Adpel</span></button>
+        </div>
+      </fieldset>
+      <label for="nama">Nama</label>
+      <input id="nama" name="nama" type="text" maxlength="20" placeholder="Namamu" required>
+      <label for="lagu">Lagu favorit <span class="opsi">(boleh dikosongkan)</span></label>
+      <select id="lagu" name="lagu"><option value="">Belum memilih</option></select>
+      <fieldset class="emot-set">
+        <legend>Reaksi <span class="opsi">(boleh dikosongkan)</span></legend>
+        <div id="emot" class="emot" role="radiogroup" aria-label="Pilih satu reaksi"></div>
+      </fieldset>
+      <label for="pesan">Pesan</label>
+      <textarea id="pesan" name="pesan" maxlength="140" rows="3" placeholder="Tulis pesan untuk Kepin dan Adpel" required></textarea>
+      <div class="baris">
+        <span id="hitung" aria-live="off">0/140</span>
+        <button class="tombol" id="kirim" type="submit">Tempel pesan</button>
+      </div>
+      <p class="status" id="status" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+
+  <section class="daftar-pesan" aria-labelledby="judul-daftar">
+    <h2 id="judul-daftar">Pesan terbaru</h2>
+    <p class="status" id="kosong" hidden></p>
+    <ul id="pesan-daftar"></ul>
+  </section>
+</main>
+
+<script src="js/data.js"></script>
+<script src="js/papan-config.js"></script>
+<script src="js/tamu.js" defer></script>
+<script src="js/latar.js" defer></script>
+</body>
+</html>
